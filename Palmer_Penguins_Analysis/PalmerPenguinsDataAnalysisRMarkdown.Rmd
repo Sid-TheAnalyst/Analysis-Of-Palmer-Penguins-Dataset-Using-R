@@ -1,0 +1,185 @@
+---
+title: "Data Exploration and Visualisation Of Palmer Penguins Dataset Using R"
+author: "Siddharth Prajapati"
+date: "2023-06-02"
+output:
+  html_document:
+    df_print: paged
+  pdf_document: default
+  word_document: default
+---
+
+## About the palmerpenguins dataset
+
+It is a dataset comprising various measurements of three different penguin species, namely Adelie, Gentoo, and Chinstrap.  The rigorous study was conducted in the islands of the Palmer Archipelago, Antarctica. These data were collected from 2007 to 2009 by Dr. Kristen Gorman with the Palmer Station Long Term Ecological Research Program, part of the US Long Term Ecological Research Network.
+
+
+![](/Users/Admin\OneDrive\Documents\images\PalmerPenguinsDataSetSnap.png)
+
+#### __Setting up my environment for Data Exploration__
+
+Notes: setting up my R environment by loading the necessary R packages.
+
+* 'tidyverse' package for data exploration
+* 'ggplot2' package for data visualization
+
+```{r}
+
+library(tidyverse)
+library(ggplot2)
+library(palmerpenguins)
+```
+
+
+In the next step, I have read the dataset using view() function.
+
+```{r}
+view(penguins)
+```
+
+![](/Users\Admin\OneDrive\Documents\images\DatasetSnap.png)
+
+
+The below given image explains what is a bill_length & bill_depth in a penguins. 
+
+
+![](/Users\Admin\OneDrive\Documents\images\BillLengthBillDepth.png)
+
+
+
+#### __Dataset Statistics__
+
+```{r}
+library(skimr)
+skim(penguins)
+```
+
+
+#### Checking all Null Values
+
+Null values are no good to any data and It is one of the most important parts of data preprocessing to be rid of them or have them treated accordingly. 
+
+Find number of NULL values in each row.
+
+```{r}
+colSums(is.na(penguins))
+```
+
+
+#### __Exploratory Data Analysis__
+
+I have used Exploratory Data Analysis (EDA) to analyze the data and discover trends, patterns, or check assumptions in data.
+
+
+__Maximum,Minimum & Mean bill length by species:__
+
+```{r}
+  penguins%>%
+  group_by(species)%>%
+  drop_na()%>%
+  summarise(max_bill_length_mm=max(bill_length_mm),
+            min_bill_length_mm=min(bill_length_mm),
+            mean_bill_length_mm=mean(bill_length_mm))
+```
+
+
+__Maximum,Minimum & Mean bill depth by species:__
+
+```{r}
+  penguins%>%
+  group_by(species)%>%
+  drop_na()%>%
+  summarise(max_bill_depth_mm=max(bill_depth_mm),
+            min_bill_depth_mm=min(bill_depth_mm),
+            mean_bill_depth_mm=mean(bill_depth_mm))
+```
+
+
+__Maximum,Minimum & Mean flipper_length by species:__
+
+```{r}
+  penguins%>%
+  group_by(species)%>%
+  drop_na()%>%
+  summarise(max_flipper_length_mm=max(flipper_length_mm),
+            min_flipper_length_mm=min(flipper_length_mm),
+            mean_flipper_length_mm=mean(flipper_length_mm))
+```
+
+
+__Maximum,Minimum & Mean body_mass by species:__
+
+```{r}
+penguins%>%
+  group_by(species)%>%
+  drop_na()%>%
+  summarise(max_body_mass_g=max(body_mass_g),
+            min_body_mass_g=min(body_mass_g),
+            mean_body_mass_g=mean(body_mass_g))
+```
+
+
+## Data Visualization
+
+I am using 'ggplot2' package for plotting relationship between variables.
+
+__Species Based Island Count Plot:__
+
+```{r}
+  ggplot(data = penguins)+
+  geom_bar(mapping = aes(x=island,fill=species))+
+  facet_wrap(~species)
+```
+
+
+__Species Based Gender Count Plot:__
+
+```{r}
+ggplot(data = penguins)+
+  geom_bar(mapping = aes(x=sex,fill=species))+
+  facet_wrap(~species)
+```
+
+
+__flipper length and body mass scatter Plot:__
+
+```{r warning=FALSE}
+ggplot(data = penguins)+
+  geom_point(mapping = aes(x=flipper_length_mm,y=body_mass_g,color=species,shape=species))
+```
+
+
+__bill length and bill depth scatter Plot:__
+
+```{r warning=FALSE}
+ggplot(data = penguins)+
+  geom_point(mapping = aes(x=bill_length_mm,y=bill_depth_mm,color=species,shape=species))
+
+
+```
+
+
+__Species based gender scatter Plot for flipper_length Vs body_mass:__
+
+```{r warning=FALSE}
+ggplot(data = penguins)+
+  geom_point(mapping = aes(x=flipper_length_mm,y=body_mass_g,color=sex))+
+  facet_wrap(~sex)+
+  facet_wrap(~species)
+```
+
+## Conclusion
+
+So, this was all about data exploration and visualization of Palmer Penguins data. Below are some key takeaways from the above analysis:
+
+* Used functions from the 'tidyverse' package for data exploration, data cleaning & to do exploratory data analysis.
+* Used functions from 'ggplot2' to plot different interactive plots describing relationships among variables.
+* Used R Markdown to create this analysis report in html & pdf formats.
+
+
+
+
+
+
+
+
