@@ -17,3 +17,5 @@ Network.
 - How to used functions from ‘ggplot2’ to plot different interactive plots describing relationships among
 variables.
 - How to create presentable analysis report using R Markdown.
+
+![image](https://github.com/Sid-TheAnalyst/Analysis-Of-Palmer-Penguins-Dataset-Using-R/blob/main/Palmer_Penguins_Analysis/PalmerPenguinsDataSetSnap.png)
