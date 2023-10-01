@@ -12,7 +12,7 @@ Network.
 
 ## Knowledge gain from this Project
 
-- How to load necessary R packages like 'tidyverse' and 'ggplot2' for data analysis and visualization.
+- How to load necessary R packages like **'tidyverse'** and **'ggplot2'** for data analysis and visualization.
 - How to perform exploratory data analysis using tidyverse functions to gain insights about dataset.
 - How to used functions from ‘ggplot2’ to plot different interactive plots describing relationships among
 variables.
